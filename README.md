@@ -1,36 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next-Gen Learning Dashboard
 
-## Getting Started
+A modern learning analytics dashboard built with Next.js 16, TypeScript, Tailwind CSS, Framer Motion, and Supabase.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+* Learning Command Center
+* Course Progress Tracking
+* XP Progress System
+* Learning Activity Timeline
+* Glassmorphism UI
+* Responsive Dashboard Layout
+* Supabase Integration
+* Animated User Experience using Framer Motion
+* Error Boundaries and Loading States
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* Next.js 16 (App Router)
+* TypeScript
+* Tailwind CSS
+* Framer Motion
+* Supabase
+* Lucide React
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Architecture
 
-## Learn More
+The application follows a component-driven architecture:
 
-To learn more about Next.js, take a look at the following resources:
+components/
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* dashboard/
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+  * command-center.tsx
+  * course-card.tsx
+  * xp-tile.tsx
+  * insights-tile.tsx
+  * timeline-tile.tsx
+  * dashboard-grid.tsx
 
-## Deploy on Vercel
+* layout/
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  * sidebar.tsx
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* effects/
+
+  * glow-card.tsx
+  * grid-background.tsx
+
+lib/
+
+* supabase/
+* animations.ts
+
+types/
+
+* course.ts
+
+## Server / Client Component Split
+
+### Server Components
+
+* app/page.tsx
+* Supabase data fetching utilities
+
+Responsibilities:
+
+* Fetch course data from Supabase
+* Pass data to client components
+* Reduce client-side bundle size
+
+### Client Components
+
+* Sidebar
+* CourseCard
+* DashboardGrid
+* XP Tile
+* Insights Tile
+
+Responsibilities:
+
+* User interaction
+* Framer Motion animations
+* UI state management
+
+## Data Flow
+
+1. Server Component requests course data from Supabase.
+2. Data is fetched using Supabase SDK.
+3. Results are passed into dashboard components.
+4. Client components render interactive visualizations.
+
+## Environment Variables
+
+Create a `.env.local` file:
+
+NEXT_PUBLIC_SUPABASE_URL=
+
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+
+A sample template is provided in `.env.example`.
+
+## Challenges Faced
+
+### 1. Server and Client Component Separation
+
+Careful separation was required to keep Supabase fetching on the server while maintaining interactive animations on the client.
+
+### 2. Dynamic Dashboard Layout
+
+The dashboard layout was redesigned to create a modern SaaS-style learning experience while maintaining responsiveness.
+
+### 3. Environment Management
+
+Supabase credentials were managed through environment variables to ensure secure deployment to Vercel.
+
+## Deployment
+
+Production deployment is hosted on Vercel.
+
+## Author
+
+Sampath Malleboina
+
